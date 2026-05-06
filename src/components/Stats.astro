@@ -1,0 +1,32 @@
+---
+import { cv } from "../data/cv";
+
+const { metrics } = cv;
+
+function splitMetric(value: string): { num: string; suffix: string } {
+  const m = value.match(/^([0-9]+)(.*)$/);
+  if (m) return { num: m[1], suffix: m[2] };
+  return { num: value, suffix: "" };
+}
+---
+
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      {
+        metrics.map((m) => {
+          const { num, suffix } = splitMetric(m.value);
+          return (
+            <div class="stat" data-accent={m.accent}>
+              <div class="stat-num">
+                {num}
+                {suffix && <span>{suffix}</span>}
+              </div>
+              <div class="stat-label">{m.label}</div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

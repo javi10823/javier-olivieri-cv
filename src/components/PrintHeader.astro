@@ -1,0 +1,32 @@
+---
+import { cv } from "../data/cv";
+
+const { header } = cv;
+const [first, ...rest] = header.name.split(" ");
+const last = rest.join(" ");
+---
+
+<header class="print-header">
+  <div>
+    <div class="hero-avail">{header.availability}</div>
+    <h1 class="hero-name">{first}<br /><span class="teal">{last}</span></h1>
+    <div class="hero-role">{header.headline}</div>
+  </div>
+  <div class="print-card">
+    <div class="hero-contact-item">
+      <div class="icon">📍</div>{header.location}
+    </div>
+    <div class="hero-contact-item">
+      <div class="icon">📞</div>{header.phone}
+    </div>
+    <div class="hero-contact-item">
+      <div class="icon">✉</div>{header.email}
+    </div>
+    <div class="hero-contact-item">
+      <div class="icon">in</div>{header.linkedin}
+    </div>
+    <div class="hero-contact-item">
+      <div class="icon">⊕</div>{header.website}
+    </div>
+  </div>
+</header>

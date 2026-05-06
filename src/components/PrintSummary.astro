@@ -1,0 +1,39 @@
+---
+import { cv } from "../data/cv";
+
+function renderInline(s: string): string {
+  return s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+}
+
+function splitMetric(value: string): { num: string; suffix: string } {
+  const m = value.match(/^([0-9]+)(.*)$/);
+  if (m) return { num: m[1], suffix: m[2] };
+  return { num: value, suffix: "" };
+}
+---
+
+<section id="summary">
+  <div class="container">
+    <div class="print-summary-grid">
+      <div class="print-summary">
+        {cv.summary.map((p) => <p set:html={renderInline(p)} />)}
+      </div>
+      <div class="print-stats-grid">
+        {
+          cv.metrics.map((m) => {
+            const { num, suffix } = splitMetric(m.value);
+            return (
+              <div class="stat" data-accent={m.accent}>
+                <div class="stat-num">
+                  {num}
+                  {suffix && <span>{suffix}</span>}
+                </div>
+                <div class="stat-label">{m.label}</div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>

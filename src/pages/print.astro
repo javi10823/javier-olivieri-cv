@@ -1,0 +1,31 @@
+---
+import Base from "../layouts/Base.astro";
+import PrintHeader from "../components/PrintHeader.astro";
+import PrintSummary from "../components/PrintSummary.astro";
+import WhatIDo from "../components/WhatIDo.astro";
+import Stack from "../components/Stack.astro";
+import Testimonials from "../components/Testimonials.astro";
+import Experience from "../components/Experience.astro";
+import Languages from "../components/Languages.astro";
+import { cv } from "../data/cv";
+---
+
+<Base
+  title={`${cv.header.name} · CV ${new Date().getFullYear()}`}
+  description="Print version of CV — generated as static PDF."
+  printMode={true}
+  noindex={true}
+>
+  <div class="container">
+    <PrintHeader />
+  </div>
+  <PrintSummary />
+  <WhatIDo variant="print" />
+  <Stack variant="print" />
+  <Testimonials variant="print" />
+  <Experience variant="print" />
+  <Languages />
+  <div class="print-footer">
+    {cv.header.name} · CV {new Date().getFullYear()} · <span>AI Consultant</span> · Agentic Systems & Automation Architect
+  </div>
+</Base>

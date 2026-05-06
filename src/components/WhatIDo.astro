@@ -1,0 +1,48 @@
+---
+import { cv } from "../data/cv";
+
+interface Props {
+  variant?: "web" | "print";
+}
+const { variant = "web" } = Astro.props;
+const isPrint = variant === "print";
+---
+
+<section id="about">
+  <div class="container">
+    <div class={isPrint ? "print-section-label" : "section-label"}>What I Do</div>
+    {
+      !isPrint && (
+        <>
+          <h2 class="section-title">
+            End-to-end AI systems
+            <br />
+            that actually ship.
+          </h2>
+          <p class="section-sub">
+            Clients get a partner who thinks in outcomes, not tickets. From business audit to
+            production deployment.
+          </p>
+        </>
+      )
+    }
+    <div class={isPrint ? "print-services-grid" : "services-grid"}>
+      {
+        cv.whatIDo.map((s) => (
+          <div class="service-card">
+            <span class="service-icon">{s.emoji}</span>
+            <div class="service-title">{s.title}</div>
+            <div class="service-desc">{s.description}</div>
+            {!isPrint && (
+              <div class="service-tags">
+                {s.tags.map((t) => (
+                  <span class={`tag${t.teal ? " teal" : ""}`}>{t.label}</span>
+                ))}
+              </div>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

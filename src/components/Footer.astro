@@ -1,0 +1,19 @@
+---
+import { cv } from "../data/cv";
+
+const year = new Date().getFullYear();
+const { header } = cv;
+const [, ...roleParts] = header.headline.split("·");
+const tail = roleParts.join("·").trim();
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-copy">
+      {header.name} · <span>AI Consultant</span> · {tail} · {year}
+    </div>
+    <div class="footer-copy">
+      {header.location} · Available Remote · <span>USA / Europe</span>
+    </div>
+  </div>
+</footer>

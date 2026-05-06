@@ -1,0 +1,22 @@
+---
+import { cv } from "../data/cv";
+---
+
+<section id="languages">
+  <div class="container">
+    <div class="print-section-label">Languages</div>
+    <div class="print-languages">
+      {
+        cv.languages.map((lang) => (
+          <div class="print-language">
+            <div>
+              <div class="print-language-name">{lang.name}</div>
+              <div class="print-language-level">{lang.level}</div>
+            </div>
+            <span class="print-language-code">{lang.code}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

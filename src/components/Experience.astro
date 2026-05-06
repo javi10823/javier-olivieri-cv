@@ -1,0 +1,44 @@
+---
+import { cv } from "../data/cv";
+
+interface Props {
+  variant?: "web" | "print";
+}
+const { variant = "web" } = Astro.props;
+const isPrint = variant === "print";
+---
+
+<section id="experience" class={isPrint ? "print-experience" : ""}>
+  <div class="container">
+    <div class={isPrint ? "print-section-label" : "section-label"}>Experience</div>
+    {!isPrint && <h2 class="section-title">Where I've built.</h2>}
+    <div class="exp-list">
+      {
+        cv.experience.map((exp) => (
+          <div class="exp-item">
+            <div class="exp-meta">
+              <div class="exp-company">{exp.company}</div>
+              <div class="exp-location">{exp.location}</div>
+              <div class="exp-period">{exp.period}</div>
+            </div>
+            <div class="exp-content">
+              <div class="exp-role">{exp.role}</div>
+              <div class="exp-type">{exp.contractType}</div>
+              <div class="exp-summary">{exp.summary}</div>
+              <div class="exp-bullets">
+                {exp.bullets.map((b) => (
+                  <div class="exp-bullet">{b}</div>
+                ))}
+              </div>
+              <div class="service-tags">
+                {exp.tags.map((t) => (
+                  <span class={`tag${t.teal ? " teal" : ""}`}>{t.label}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

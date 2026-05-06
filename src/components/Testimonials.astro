@@ -1,0 +1,38 @@
+---
+import { cv } from "../data/cv";
+
+interface Props {
+  variant?: "web" | "print";
+}
+const { variant = "web" } = Astro.props;
+const isPrint = variant === "print";
+
+const items = isPrint ? cv.testimonials : cv.testimonials.slice(0, 4);
+---
+
+<section id="testimonials" class={isPrint ? "print-testimonials-section" : ""}>
+  <div class="container">
+    <div class={isPrint ? "print-section-label" : "section-label"}>
+      What Clients & Teammates Say
+    </div>
+    {!isPrint && <h2 class="section-title">The track record.</h2>}
+    <div class={isPrint ? "print-testimonials" : "testimonials-grid"}>
+      {
+        items.map((t) => (
+          <div class="testimonial">
+            <div class="testimonial-quote">{t.quote}</div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">{t.initials}</div>
+              <div>
+                <div class="author-name">{t.name}</div>
+                <div class="author-role">
+                  {t.role} · {t.company}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

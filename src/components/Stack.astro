@@ -1,0 +1,30 @@
+---
+import { cv } from "../data/cv";
+
+interface Props {
+  variant?: "web" | "print";
+}
+const { variant = "web" } = Astro.props;
+const isPrint = variant === "print";
+---
+
+<section id="stack">
+  <div class="container">
+    <div class={isPrint ? "print-section-label" : "section-label"}>Stack & Skills</div>
+    {!isPrint && <h2 class="section-title">Tools I build with.</h2>}
+    <div class={isPrint ? "print-stack-grid" : "stack-grid"}>
+      {
+        cv.stack.map((cat) => (
+          <div class="stack-card">
+            <div class="stack-category">{cat.category}</div>
+            <div class="stack-tags">
+              {cat.items.map((it) => (
+                <span class="tag">{it}</span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

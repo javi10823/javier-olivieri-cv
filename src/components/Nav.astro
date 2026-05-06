@@ -1,0 +1,72 @@
+---
+import { cv } from "../data/cv";
+
+const [first, ...rest] = cv.header.name.split(" ");
+const last = rest.join(" ");
+---
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <div class="nav-logo">{first} <span>{last}</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#experience">Experience</a>
+      <a href="#testimonials">Clients</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Hire me</a>
+    <div class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">About</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#experience">Experience</a>
+  <a href="#testimonials">Clients</a>
+  <a href="#contact">Contact</a>
+  <a href={`mailto:${cv.header.email}`}>→ Hire me</a>
+</div>
+
+<script>
+  const menu = document.getElementById("mobileMenu");
+  const ham = document.getElementById("hamburger");
+
+  function toggleMenu() {
+    menu?.classList.toggle("open");
+  }
+  ham?.addEventListener("click", toggleMenu);
+  document.querySelectorAll(".mobile-menu a").forEach((a) =>
+    a.addEventListener("click", () => menu?.classList.remove("open")),
+  );
+  document.addEventListener("click", (e) => {
+    const target = e.target as Node;
+    if (
+      menu?.classList.contains("open") &&
+      !menu.contains(target) &&
+      !ham?.contains(target)
+    ) {
+      menu.classList.remove("open");
+    }
+  });
+
+  const sections = document.querySelectorAll<HTMLElement>("section[id]");
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>(".nav-links a");
+  window.addEventListener(
+    "scroll",
+    () => {
+      let current = "";
+      sections.forEach((s) => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      });
+      navLinks.forEach((a) => {
+        if (a.getAttribute("href") === "#" + current) a.classList.add("active");
+        else a.classList.remove("active");
+      });
+    },
+    { passive: true },
+  );
+</script>
