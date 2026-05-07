@@ -253,6 +253,12 @@ h1.hero-name .teal {
   max-width: 540px;
   margin-bottom: 40px;
 }
+.hero-bio p {
+  margin: 0;
+}
+.hero-bio p + p {
+  margin-top: 18px;
+}
 .hero-bio strong {
   color: var(--text);
   font-weight: 500;

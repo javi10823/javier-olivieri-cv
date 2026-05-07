@@ -99,7 +99,7 @@ export const cv: CV = {
 
   summary: [
     "I design and build **agentic AI systems and automation architectures** — from autonomous multi-agent pipelines and RAG systems to full-stack AI-native products that ship to production.",
-    "With **17+ years in full-stack development** and a track record at US-based startups, I specialize in mapping business processes end-to-end, identifying where AI creates real leverage, and executing — from technical blueprint to deployed system. Clients get a partner who thinks in outcomes, not tickets.",
+    "With **17+ years in full-stack development** and a track record at US-based startups, I specialize in mapping business processes end-to-end, identifying where AI creates real leverage, and executing — from technical blueprint to deployed system. You get a partner who thinks in outcomes, not tickets.",
   ],
 
   metrics: [

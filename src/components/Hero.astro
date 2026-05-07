@@ -5,6 +5,10 @@ const { header } = cv;
 const [first, ...rest] = header.name.split(" ");
 const last = rest.join(" ");
 const initials = first[0] + (last[0] ?? "");
+
+function renderInline(s: string): string {
+  return s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+}
 ---
 
 <section id="hero">
@@ -16,14 +20,9 @@ const initials = first[0] + (last[0] ?? "");
         <div class="hero-avail">{header.availability}</div>
         <h1 class="hero-name">{first}<br /><span class="teal">{last}</span></h1>
         <div class="hero-role">{header.headline}</div>
-        <p class="hero-bio">
-          I design and build <strong>agentic AI systems and automation architectures</strong> —
-          from autonomous multi-agent pipelines and RAG systems to full-stack AI-native products
-          that ship to production.<br /><br />
-          With <strong>17+ years in full-stack development</strong> and a track record at US-based
-          startups, I specialize in mapping business processes end-to-end, identifying where AI
-          creates real leverage, and executing — from blueprint to deployed system.
-        </p>
+        <div class="hero-bio">
+          {cv.summary.map((p) => <p set:html={renderInline(p)} />)}
+        </div>
         <div class="hero-actions">
           <a href="#portfolio" class="btn-primary">View Work ↓</a>
           <a href="/cv.pdf" class="btn-secondary" download>Download PDF ↓</a>
