@@ -98,15 +98,15 @@ export const cv: CV = {
   },
 
   summary: [
-    "I design and build **agentic AI systems and automation architectures** — from autonomous multi-agent pipelines and RAG systems to full-stack AI-native products that ship to production.",
-    "With **17+ years in full-stack development** and a track record at US-based startups, I specialize in mapping business processes end-to-end, identifying where AI creates real leverage, and executing — from technical blueprint to deployed system. Clients get a partner who thinks in outcomes, not tickets.",
+    "I design and build **agentic AI systems and automation architectures** — from autonomous multi-agent pipelines and RAG systems to voice AI products and full-stack AI-native applications that ship to production.",
+    "With **17+ years in full-stack development** and **3+ years specifically in production AI systems**, I specialize in mapping business processes end-to-end, identifying where AI creates real leverage, and executing — from technical blueprint to deployed system. I currently run multiple production AI products serving real clients daily. You get a partner who thinks in outcomes, not tickets.",
   ],
 
   metrics: [
     { value: "17+", label: "Years Dev Experience", accent: "teal" },
     { value: "40+", label: "Shipped Projects", accent: "purple" },
     { value: "8+", label: "US Clients", accent: "red" },
-    { value: "3", label: "AI Products Live", accent: "yellow" },
+    { value: "5", label: "AI Products Live", accent: "yellow" },
   ],
 
   whatIDo: [
@@ -114,13 +114,27 @@ export const cv: CV = {
       emoji: "🤖",
       title: "Agentic AI Systems",
       description:
-        "Autonomous multi-agent workflows using Claude, OpenAI, CrewAI and MCP. Tool use, memory, RAG pipelines, and human-in-the-loop logic — production-ready.",
+        "Production multi-agent workflows using Claude API, CrewAI, MCP and LangGraph. Tool use, RAG pipelines, vision agents, human-in-the-loop. Already running in production, not PoCs.",
       tags: [
-        { label: "Claude", teal: true },
-        { label: "OpenAI", teal: true },
+        { label: "Claude API", teal: true },
+        { label: "LangGraph", teal: true },
         { label: "CrewAI" },
         { label: "MCP" },
         { label: "RAG" },
+        { label: "Vision" },
+      ],
+    },
+    {
+      emoji: "🎙️",
+      title: "Voice AI & Conversational",
+      description:
+        "End-to-end voice agents with Retell AI, n8n middleware, GHL integration. Built and deployed a full dialer PoC for US healthcare in weeks, not quarters.",
+      tags: [
+        { label: "Retell AI", teal: true },
+        { label: "Twilio", teal: true },
+        { label: "n8n" },
+        { label: "GHL" },
+        { label: "Voice" },
       ],
     },
     {
@@ -140,24 +154,13 @@ export const cv: CV = {
       emoji: "🏗️",
       title: "AI-Native Product Architecture",
       description:
-        "Full-stack AI products from scratch — Next.js + NestJS + LLM APIs + vector DBs. Technical blueprint, architecture, and execution in one engagement.",
+        "Full-stack AI products from scratch — Next.js + FastAPI + Claude API + Postgres + vector DBs. Technical blueprint, architecture, and execution in one engagement.",
       tags: [
         { label: "Next.js", teal: true },
-        { label: "NestJS", teal: true },
+        { label: "FastAPI", teal: true },
+        { label: "Claude API" },
+        { label: "Postgres" },
         { label: "Vector DBs" },
-        { label: "TypeScript" },
-      ],
-    },
-    {
-      emoji: "⚡",
-      title: "Technical AI Strategy",
-      description:
-        "AI readiness audits, stack & model selection, token cost optimization, and architecture standards for teams going AI-first from the ground up.",
-      tags: [
-        { label: "Strategy", teal: true },
-        { label: "Model Selection" },
-        { label: "Cost Optimization" },
-        { label: "Roadmap" },
       ],
     },
   ],
@@ -172,32 +175,36 @@ export const cv: CV = {
         "Prompt Engineering",
         "Token Management",
         "RAG Pipelines",
-        "Vector DBs",
+        "Vector DBs (Qdrant, pgvector)",
         "Embeddings",
+        "Structured Outputs",
+        "Prompt Caching",
       ],
     },
     {
       category: "Agent Orchestration",
       items: [
-        "CrewAI",
+        "LangGraph",
         "LangChain",
         "LlamaIndex",
+        "CrewAI",
         "MCP Servers",
         "Claude Code",
         "Multi-agent workflows",
         "Human-in-the-loop",
+        "Tool use",
       ],
     },
     {
-      category: "Process & Automation",
+      category: "Voice AI & Observability",
       items: [
-        "n8n",
-        "Make",
-        "Zapier",
-        "Workflow design",
-        "Document parsing",
-        "SaaS integrations",
-        "API + Webhooks",
+        "Retell AI",
+        "Twilio",
+        "n8n middleware",
+        "Langfuse",
+        "Audit logging",
+        "Custom tracing",
+        "Debug-mode pipelines",
       ],
     },
     {
@@ -205,13 +212,14 @@ export const cv: CV = {
       items: [
         "NestJS",
         "Node.js",
-        "Python",
+        "Python (FastAPI, Django/DRF)",
         "PostgreSQL",
         "MongoDB",
+        "Prisma",
         "REST",
         "GraphQL",
-        "Notion",
-        "Airtable",
+        "Document parsing",
+        "API + Webhooks",
       ],
     },
     {
@@ -219,10 +227,13 @@ export const cv: CV = {
       items: [
         "Next.js",
         "React",
+        "React Native",
         "TypeScript",
+        "Tailwind",
         "AWS",
         "Docker",
         "Vercel",
+        "Railway",
         "CI/CD",
         "GitHub Actions",
       ],
@@ -230,12 +241,13 @@ export const cv: CV = {
     {
       category: "Leadership",
       items: [
-        "Tech Lead 6+ years",
+        "Tech Lead (6+ yr)",
         "Systems thinking",
         "Process design",
         "Ops consulting",
         "Remote teams",
         "US clients",
+        "Hiring pipelines",
       ],
     },
   ],
@@ -321,6 +333,52 @@ export const cv: CV = {
         github: "https://github.com/javi10823",
       },
       featured: true,
+    },
+    {
+      thumbVariant: 6,
+      emoji: "📞",
+      label: "AI Voice Dialer",
+      title: "HealthHue",
+      badge: "Soon",
+      description:
+        "Retell AI voice agent + n8n orchestration + GHL CRM for a US healthcare client. End-to-end voice-first PoC with React setter panel for live operator handoff.",
+      metrics: [
+        { value: "Production", key: "Grade PoC" },
+        { value: "Weeks", key: "Time to ship" },
+      ],
+      tags: [
+        { label: "Retell AI", teal: true },
+        { label: "n8n", teal: true },
+        { label: "GHL" },
+        { label: "React" },
+        { label: "Railway" },
+        { label: "Vercel" },
+      ],
+      links: {
+        soon: true,
+      },
+    },
+    {
+      thumbVariant: 8,
+      emoji: "🛡️",
+      label: "Insurance PWA",
+      title: "Sinia — Adjuster Field Ops",
+      badge: "Soon",
+      description:
+        "PWA for an independent insurance adjuster (La Segunda Seguros). 37 canonical fields, 3 conversational surfaces, Google Drive storage, offline-first with Service Worker + IndexedDB. Two-model pipeline: Haiku classifies, Sonnet drafts.",
+      metrics: [
+        { value: "8 weeks", key: "MVP delivery" },
+        { value: "$600+$35/mo", key: "All-in cost" },
+      ],
+      tags: [
+        { label: "Next.js PWA", teal: true },
+        { label: "Claude API", teal: true },
+        { label: "Drive OAuth" },
+        { label: "docxtpl" },
+      ],
+      links: {
+        soon: true,
+      },
     },
     {
       thumbVariant: 4,
@@ -470,15 +528,17 @@ export const cv: CV = {
       summary:
         "AI-first software consultancy — process audits, agentic architecture, and production-ready AI systems for startups and growing companies.",
       bullets: [
-        "Built AI quoting agent (Claude) for a marble & stone company: reads architectural floor plans, applies 30+ business rules, auto-generates PDF + Excel quotes — cutting quote time from 3hrs to minutes and recovering 70% of leads previously lost to tedious manual intake forms.",
-        "Architected 20-module government platform modernization (NestJS + Next.js + PostgreSQL + MinIO) replacing a legacy Java/IE11 system serving a national library network.",
-        "Delivered AI-native full-stack products for US clients across healthtech, fintech, and Web3 — from technical blueprint to deployed production system.",
+        "Built Valentina, a vision-based AI quoting agent (Claude API) for a marble & stone company: reads architectural floor plans, applies 30+ business rules, auto-generates PDF + Excel quotes — cutting quote time from 3 hours to under 5 minutes. Live in production with full observability stack (audit events, debug mode, PII sanitizer at 5.84ms p95).",
+        "Built HealthHue, an AI voice dialer PoC for a US healthcare client: Retell AI conversational agent + n8n orchestration + GHL CRM integration + React setter panel for live operator handoff. Full voice-first product end-to-end in weeks.",
+        "Architected a 20-module government platform modernization (NestJS + Next.js + PostgreSQL + MinIO) replacing a legacy Java/IE11 system serving Argentina's national popular library network (CONABIP, ~5,000 libraries).",
+        "Delivered AI-native full-stack products for US clients across healthtech, fintech, and Web3 — from blueprint to deployed production system.",
       ],
       tags: [
         { label: "Agentic AI Systems", teal: true },
+        { label: "Voice AI", teal: true },
         { label: "RAG Pipelines" },
+        { label: "MCP Servers" },
         { label: "Process Design & Automation" },
-        { label: "SaaS Integrations" },
         { label: "AI-Native Products" },
         { label: "Technical Strategy" },
       ],
@@ -492,10 +552,11 @@ export const cv: CV = {
       summary:
         "Leading architecture and product development for a US fertility care platform connecting 10k+ patients with remote clinical care across US clinics.",
       bullets: [
-        "Designed full system architecture from scratch — web + mobile — defining technical specs directly with CTO across a 2+ year engagement.",
+        "Designed full system architecture from scratch — web + mobile — defining technical specs directly with CTO across a 3+ year engagement.",
         "Introduced AI-assisted tooling and automated dev workflows, increasing team throughput by ~35% without adding headcount.",
         "Shipped CI/CD pipelines that cut deployment cycle time from days to under 2 hours.",
         "Led distributed 4-person frontend team across US/LATAM time zones — sprint planning, code reviews, delivery ownership.",
+        "Currently leading multi-tenancy migration and international phone number support rollout (Twilio geo-permissions, Canada launch).",
       ],
       tags: [
         { label: "React Native", teal: true },
@@ -505,6 +566,7 @@ export const cv: CV = {
         { label: "Python" },
         { label: "Auth0" },
         { label: "Stripe" },
+        { label: "Twilio" },
         { label: "Firebase" },
         { label: "AWS" },
       ],
