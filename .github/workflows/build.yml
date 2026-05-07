@@ -49,6 +49,6 @@ jobs:
             echo "PDF unchanged — nothing to commit."
           else
             git add public/cv.pdf
-            git commit -m "chore: update cv.pdf [skip ci]"
+            git commit -m "chore: update cv.pdf [skip actions]"
             git push
           fi

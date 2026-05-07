@@ -230,7 +230,7 @@ export const cv: CV = {
     {
       category: "Leadership",
       items: [
-        "Tech Lead 6+ yrs",
+        "Tech Lead 6+ years",
         "Systems thinking",
         "Process design",
         "Ops consulting",
