@@ -4,7 +4,6 @@ import { cv } from "../data/cv";
 const { header } = cv;
 const [first, ...rest] = header.name.split(" ");
 const last = rest.join(" ");
-const initials = first[0] + (last[0] ?? "");
 
 function renderInline(s: string): string {
   return s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
@@ -31,7 +30,14 @@ function renderInline(s: string): string {
       </div>
       <div class="hero-right">
         <div class="hero-photo-wrap">
-          <span class="hero-photo-placeholder">{initials}</span>
+          <img
+            src="/hero.jpg"
+            alt="Javier Olivieri"
+            width="512"
+            height="512"
+            loading="eager"
+            decoding="async"
+          />
         </div>
         <div class="hero-card">
           <a href={`mailto:${header.email}`} class="hero-contact-item">
