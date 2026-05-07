@@ -1,110 +1,93 @@
 # Javier Olivieri — CV
 
-[![Build](https://github.com/javi10823/javier-olivieri-cv/actions/workflows/build.yml/badge.svg)](https://github.com/javi10823/javier-olivieri-cv/actions/workflows/build.yml)
-[![Deployed on Netlify](https://img.shields.io/badge/deploy-netlify-00c7b7?logo=netlify&logoColor=white)](https://cv-javier-olivieri-ai-consultant.netlify.app/)
+Single source of truth, two outputs: a live web and an auto-generated PDF.
+
+[![Build](https://github.com/javi10823/javier-olivieri-cv/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/javi10823/javier-olivieri-cv/actions/workflows/build.yml)
+[![Netlify](https://img.shields.io/badge/deploy-Netlify-00c7b7?logo=netlify&logoColor=white)](https://cv-javier-olivieri-ai-consultant.netlify.app/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Made with Astro](https://img.shields.io/badge/built%20with-Astro-ff5d01?logo=astro&logoColor=white)](https://astro.build)
+[![Built with Astro](https://img.shields.io/badge/built%20with-Astro-ff5d01?logo=astro&logoColor=white)](https://astro.build)
+[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
-**Single source of truth, two outputs: web + auto-generated PDF.**
+**Live web:** [cv-javier-olivieri-ai-consultant.netlify.app](https://cv-javier-olivieri-ai-consultant.netlify.app/) · **PDF:** [cv.pdf (raw)](https://github.com/javi10823/javier-olivieri-cv/raw/main/public/cv.pdf)
 
-> _Screenshot placeholder — TODO: add a hero shot of the deployed site._
+![Screenshot of the live CV](docs/screenshot.png)
 
-## Why this exists
+## The problem this solves
 
-A CV is a living document. The web version drifts away from the PDF, the PDF drifts away from the LinkedIn copy, and three months later none of them say the same thing. This repo collapses that into one editable surface: every field — bullets, metrics, testimonials, stack — lives in a single typed TypeScript object, and the build emits both a static web page and a `cv.pdf` file from it. Edit once, both outputs update on the next push.
+My CV is a living document. Every time I add a project or change a role, I used to update the PDF by hand in a design tool *and* edit the website's HTML separately. They drifted apart in days. This repo collapses that into one editable surface: I edit a single typed TypeScript file, push, and both the web and the PDF regenerate themselves.
 
 ## How it works
 
 ```
-┌────────────────────┐
-│  src/data/cv.ts    │  single source of truth (TypeScript, typed)
-└──────────┬─────────┘
-           │
-           ▼
-   ┌───────────────┐
-   │  Astro build  │
-   └──────┬────┬───┘
-          │    │
-          │    └──────────►  /print  ──►  Playwright (Chromium)  ──►  public/cv.pdf
-          │
-          └────────────────►  /index.html  (the deployed website)
+src/data/cv.ts  ─►  Astro build  ─►  dist/index.html  ─►  Netlify (web)
+                                ─►  /print route
+                                      │
+                                      ▼
+                                Playwright (CI)
+                                      │
+                                      ▼
+                                public/cv.pdf  ─►  committed to repo
 ```
 
-- The web page (`/`) renders from the same data as `/print`, but with full nav, scroll-spy, hover states, contact form, and portfolio cards.
-- The print page (`/print`) is a separate route optimized for A4: tighter spacing, no nav, no form, page-break hints, and an extra Languages section.
-- A GitHub Actions workflow runs the build + PDF generation on every push to `main` and commits the regenerated `cv.pdf` back to the repo. Netlify autodeploys.
+A push to `main` triggers GitHub Actions: build the static site, render the `/print` route through headless Chromium with Playwright, export A4 PDF with backgrounds preserved, and commit the regenerated `cv.pdf` back to the repo (with a `[skip actions]` directive so the bot's own commit doesn't loop the workflow). Netlify watches `main` and redeploys on every push — both the human one and the bot's PDF refresh.
 
 ## Tech stack
 
-- **Astro** — static site generator, content-first
-- **TypeScript** (strict) — typed data model, no `any`
-- **Tailwind v4** — design tokens via `@theme`, base styles colocated with the rest
-- **Playwright** — headless Chromium for PDF export with backgrounds preserved
-- **GitHub Actions** — CI that rebuilds the PDF on every content change
-- **Netlify** — static hosting with auto-deploy on push to `main`
+- Astro (static site generator)
+- TypeScript (strict)
+- Tailwind CSS (utility-first styling)
+- Playwright (PDF generation)
+- GitHub Actions (CI)
+- Netlify (hosting)
 
 ## Project structure
 
 ```
 .
-├── public/
-│   └── cv.pdf                  # generated artifact, committed to the repo
-├── scripts/
-│   └── generate-pdf.ts         # Playwright PDF exporter
 ├── src/
-│   ├── data/
-│   │   └── cv.ts               # ← THE single source of truth
-│   ├── components/             # Astro components (Hero, Stack, Experience, …)
-│   ├── layouts/
-│   │   └── Base.astro          # shared <html>, fonts, meta
-│   ├── pages/
-│   │   ├── index.astro         # public web CV
-│   │   └── print.astro         # A4-optimized print route
-│   └── styles/
-│       └── global.css          # design tokens + component CSS
-├── .github/workflows/build.yml # CI: build site, regenerate PDF, commit
-├── astro.config.mjs
-└── package.json
+│   ├── data/cv.ts          # Single source of truth — typed TS object
+│   ├── layouts/Base.astro  # Shared <html>, fonts, meta
+│   ├── components/         # Modular sections (Hero, Stack, Experience, …)
+│   └── pages/
+│       ├── index.astro     # Public web version
+│       └── print.astro     # Print-optimized route used by Playwright
+├── scripts/
+│   └── generate-pdf.ts     # Playwright PDF exporter
+├── public/
+│   ├── cv.pdf              # Auto-generated, do not edit manually
+│   └── hero.jpg            # Hero photo (web only, omitted in PDF)
+└── .github/workflows/
+    └── build.yml           # CI: build + PDF regen + commit
 ```
 
 ## Local development
 
-Requires Node 22+ and pnpm 8+.
-
 ```bash
-pnpm install                           # install dependencies
-pnpm dev                               # http://localhost:4321
-pnpm build                             # build static site → dist/
-pnpm exec playwright install chromium  # one-time browser download
-pnpm generate-pdf                      # spin up preview, render /print, write public/cv.pdf
+pnpm install
+pnpm dev          # Astro dev server at localhost:4321
+pnpm build        # Production build → dist/
+pnpm generate-pdf # Regenerate cv.pdf locally (requires `pnpm exec playwright install chromium` once)
 ```
 
-## How to update the CV
+Requires Node 22+ and pnpm 8+.
 
-**Edit `src/data/cv.ts`. Push. Done.**
+## Updating the CV
 
-That's the whole flow. The data file is fully typed, so the editor will guide you for every field. No HTML, no markdown, no tracking which page each section lives on. Push to `main` and the workflow regenerates `public/cv.pdf`, then Netlify ships the new web version.
+**Edit `src/data/cv.ts`. Push to `main`. Done.**
 
-## Deployment
+CI runs the build, regenerates `public/cv.pdf` from the new content, and commits the updated PDF back to the branch. Netlify autodeploys the resulting state. From the moment I `git push` to the moment the new web and the new PDF are live, hands-off in roughly 60–90 seconds.
 
-| Surface | URL                                              | Trigger                                   |
-| ------- | ------------------------------------------------ | ----------------------------------------- |
-| Web     | `cv-javier-olivieri-ai-consultant.netlify.app`   | Push to `main` → Netlify auto-build       |
-| PDF     | `/cv.pdf` on the same domain (also in repo)     | Push to `main` → CI regenerates + commits |
+## Design notes
 
-The CI workflow:
-
-1. Checkout, install pnpm + Node 22.
-2. `pnpm install` and `pnpm build`.
-3. Install Chromium for Playwright.
-4. Run `pnpm generate-pdf` (boots the preview server, exports A4 PDF, kills server).
-5. If `public/cv.pdf` changed, commit it back with `[skip ci]` to avoid feedback loops.
-6. Netlify detects the push and redeploys the site (with the updated PDF).
+- **Web and print share the same data model** but render different sections — the web shows portfolio cards and a contact form, the print version drops those and adds a Languages section. The split lives in the components, not the data.
+- **The PDF is generated against a real route, not a separate template.** `/print` is a print-optimized version of the same Astro pipeline, served from the same `dist/` output. There is no parallel "PDF template" that can drift from the website.
+- **Tailwind tokens defined once.** `@theme` in `src/styles/global.css` declares the dark palette, fonts, and accents used by both the web and the print layout, so the printed PDF and the live site share the same visual identity.
+- **The bot commit uses `[skip actions]`, not `[skip ci]`.** GitHub Actions skips on either, but Netlify only skips on `[skip ci]` — using `[skip actions]` lets the regenerated PDF actually deploy.
 
 ## License
 
-[MIT](LICENSE) — Javier Olivieri, 2026.
+[MIT](LICENSE)
 
 ---
 
-Built by [Javier Olivieri](https://devlabs.dev) · [LinkedIn](https://linkedin.com/in/javierolivieri) · [devlabs.dev](https://devlabs.dev)
+Built by Javier Olivieri · [devlabs.dev](https://devlabs.dev) · [linkedin.com/in/javierolivieri](https://linkedin.com/in/javierolivieri)
