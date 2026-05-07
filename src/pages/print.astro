@@ -8,6 +8,9 @@ import Testimonials from "../components/Testimonials.astro";
 import Experience from "../components/Experience.astro";
 import Languages from "../components/Languages.astro";
 import { cv } from "../data/cv";
+
+const [headlineFirst, ...headlineRest] = cv.header.headline.split("·").map((s) => s.trim());
+const headlineTail = headlineRest.join(" · ");
 ---
 
 <Base
@@ -26,6 +29,6 @@ import { cv } from "../data/cv";
   <Experience variant="print" />
   <Languages />
   <div class="print-footer">
-    {cv.header.name} · CV {new Date().getFullYear()} · <span>AI Consultant</span> · Agentic Systems & Automation Architect
+    {cv.header.name} · CV {new Date().getFullYear()} · <span>{headlineFirst}</span> · {headlineTail}
   </div>
 </Base>

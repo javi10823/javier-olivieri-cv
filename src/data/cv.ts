@@ -87,7 +87,7 @@ export type CV = {
 export const cv: CV = {
   header: {
     name: "Javier Olivieri",
-    headline: "AI Consultant · Agentic Systems & Automation Architect",
+    headline: "Independent AI Engineer · Agentic Systems Architect",
     location: "Rosario, Argentina",
     phone: "+54 9 341 377 7677",
     email: "javi10823@gmail.com",
@@ -523,10 +523,10 @@ export const cv: CV = {
       company: "DevLabs",
       location: "Rosario, Argentina",
       period: "2022 – Present",
-      role: "Founder & Technical Lead",
-      contractType: "STARDEVS LLC · DEVLABS.DEV · AI-First Software Consultancy",
+      role: "Founder & Independent AI Engineer",
+      contractType: "STARDEVS LLC · DEVLABS.DEV · Independent · Solo Operator",
       summary:
-        "AI-first software consultancy — process audits, agentic architecture, and production-ready AI systems for startups and growing companies.",
+        "I operate as an independent AI engineer through DevLabs (STARDEVS LLC, Delaware). End-to-end ownership: discovery, architecture, code, deploy, and direct client support. No middle layer, no handoffs.",
       bullets: [
         "Built Valentina, a vision-based AI quoting agent (Claude API) for a marble & stone company: reads architectural floor plans, applies 30+ business rules, auto-generates PDF + Excel quotes — cutting quote time from 3 hours to under 5 minutes. Live in production with full observability stack (audit events, debug mode, PII sanitizer at 5.84ms p95).",
         "Built HealthHue, an AI voice dialer PoC for a US healthcare client: Retell AI conversational agent + n8n orchestration + GHL CRM integration + React setter panel for live operator handoff. Full voice-first product end-to-end in weeks.",
