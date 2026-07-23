@@ -9,6 +9,31 @@ interface Props {
 }
 
 const { title, description, printMode = false, noindex = false } = Astro.props;
+
+// Self-hosted static font faces used only for the print/PDF route (see below).
+const fontFace = (
+  family: string,
+  file: string,
+  weight: number,
+  style: "normal" | "italic" = "normal",
+) =>
+  `@font-face{font-family:"${family}";font-style:${style};font-weight:${weight};font-display:swap;src:url("/fonts/${file}") format("woff2");}`;
+
+const PRINT_FONT_FACE = [
+  fontFace("Syne", "syne-latin-400-normal.woff2", 400),
+  fontFace("Syne", "syne-latin-500-normal.woff2", 500),
+  fontFace("Syne", "syne-latin-600-normal.woff2", 600),
+  fontFace("Syne", "syne-latin-700-normal.woff2", 700),
+  fontFace("Syne", "syne-latin-800-normal.woff2", 800),
+  fontFace("DM Sans", "dm-sans-latin-300-normal.woff2", 300),
+  fontFace("DM Sans", "dm-sans-latin-400-normal.woff2", 400),
+  fontFace("DM Sans", "dm-sans-latin-500-normal.woff2", 500),
+  fontFace("DM Sans", "dm-sans-latin-300-italic.woff2", 300, "italic"),
+  fontFace("DM Mono", "dm-mono-latin-300-normal.woff2", 300),
+  fontFace("DM Mono", "dm-mono-latin-400-normal.woff2", 400),
+  fontFace("DM Mono", "dm-mono-latin-500-normal.woff2", 500),
+  fontFace("DM Mono", "dm-mono-latin-300-italic.woff2", 300, "italic"),
+].join("");
 ---
 
 <!doctype html>
@@ -21,10 +46,21 @@ const { title, description, printMode = false, noindex = false } = Astro.props;
     {noindex && <meta name="robots" content="noindex,nofollow" />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
-      rel="stylesheet"
-    />
+    {
+      printMode ? (
+        // Print/PDF: self-host STATIC (non-variable) font instances. Google
+        // Fonts serves Syne / DM Sans as variable fonts, which Chromium's
+        // page.pdf() cannot embed as vector outlines — it rasterizes them into
+        // Type 3 bitmap fonts (blurry text). Static woff2 files embed as crisp
+        // vector (CID TrueType). Files live in /public/fonts (Fontsource v5).
+        <style set:html={PRINT_FONT_FACE} />
+      ) : (
+        <link
+          href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+          rel="stylesheet"
+        />
+      )
+    }
   </head>
   <body class={printMode ? "print-body" : ""}>
     <slot />

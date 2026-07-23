@@ -53,8 +53,22 @@ async function main(): Promise<void> {
     const page = await ctx.newPage();
 
     await page.goto(PRINT_URL, { waitUntil: "networkidle" });
+    // Force the branded webfonts to actually load before printing. With
+    // `display=swap`, text paints in a system fallback and `fonts.ready` can
+    // resolve before Syne / DM Sans are fetched — which silently ships a PDF
+    // rendered in generic fallback fonts. Explicitly load every family/weight
+    // used, then wait for the font set to settle.
     await page.evaluate(async () => {
-      await (document as Document & { fonts: { ready: Promise<unknown> } }).fonts.ready;
+      const fontSet = (document as Document & {
+        fonts: FontFaceSet & { load(font: string): Promise<unknown> };
+      }).fonts;
+      const specs = [
+        "400 1em Syne", "500 1em Syne", "600 1em Syne", "700 1em Syne", "800 1em Syne",
+        "300 1em 'DM Sans'", "400 1em 'DM Sans'", "500 1em 'DM Sans'", "italic 300 1em 'DM Sans'",
+        "300 1em 'DM Mono'", "400 1em 'DM Mono'", "500 1em 'DM Mono'", "italic 300 1em 'DM Mono'",
+      ];
+      await Promise.all(specs.map((s) => fontSet.load(s).catch(() => undefined)));
+      await fontSet.ready;
     });
 
     console.log(`▶ Generating PDF → ${outputPath}`);
