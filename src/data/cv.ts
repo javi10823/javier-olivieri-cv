@@ -304,6 +304,33 @@ export const cv: CV = {
       featured: true,
     },
     {
+      thumbVariant: 4,
+      emoji: "💰",
+      label: "AI Fintech · Vision + Tool Use · Multi-tenant",
+      title: "Bold Finance — AI Financial Ops for Hospitality",
+      description:
+        "Multi-tenant financial platform for a hospitality business with two revenue lines (café + course academy). Centralizes daily cash, supplier payments, payroll, Mercado Pago reconciliation, and a consolidated P&L with month-end projection, break-even, and accrual accounting. Deep Claude integration: a streaming assistant that logs operations by natural language, vision-based receipt extraction (photo/PDF → vendor, amount, date), automatic duplicate detection, and proactive financial insights over deterministic data.",
+      metrics: [
+        { value: "Real-time", key: "P&L + forecast" },
+        { value: "Vision AI", key: "Receipt capture" },
+        { value: "Multi-tenant", key: "Postgres RLS" },
+      ],
+      tags: [
+        { label: "Next.js 16", teal: true },
+        { label: "Claude API", teal: true },
+        { label: "Supabase" },
+        { label: "PostgreSQL RLS" },
+        { label: "Server Actions" },
+        { label: "Vision" },
+        { label: "Vercel" },
+      ],
+      links: {
+        live: { url: "https://bold-finance.vercel.app/", label: "View Live" },
+        github: "https://github.com/javi10823/bold-finance",
+      },
+      featured: true,
+    },
+    {
       thumbVariant: 8,
       emoji: "📊",
       label: "AI Marketing · Meta Ads · Analytics Dashboard · PoC",
