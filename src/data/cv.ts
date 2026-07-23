@@ -326,7 +326,6 @@ export const cv: CV = {
       ],
       links: {
         live: { url: "https://bold-finance.vercel.app/", label: "View Live" },
-        github: "https://github.com/javi10823/bold-finance",
       },
       featured: true,
     },
