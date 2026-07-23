@@ -1460,6 +1460,8 @@ footer.site-footer {
 .print-mode .print-language,
 .print-mode .stat,
 .print-mode #languages,
+.print-mode .print-testimonials-section,
+.print-mode .print-testimonials,
 .print-mode .print-stats-grid,
 .print-mode .print-summary-grid {
   page-break-inside: avoid;

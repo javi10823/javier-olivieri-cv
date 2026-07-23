@@ -7,7 +7,9 @@ interface Props {
 const { variant = "web" } = Astro.props;
 const isPrint = variant === "print";
 
-const items = isPrint ? cv.testimonials : cv.testimonials.slice(0, 4);
+// Print/PDF keeps only the 3 most relevant testimonials so the block fits on
+// one page without splitting across a page break. Web keeps its fuller set.
+const items = isPrint ? cv.testimonials.slice(0, 3) : cv.testimonials.slice(0, 4);
 ---
 
 <section id="testimonials" class={isPrint ? "print-testimonials-section" : ""}>

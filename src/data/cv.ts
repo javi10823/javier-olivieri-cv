@@ -7,7 +7,6 @@ export type ContactInfo = {
   linkedin: string;
   github: string;
   website?: string;
-  availability: string;
 };
 
 export type MetricAccent = "teal" | "purple" | "red" | "yellow";
@@ -93,7 +92,6 @@ export const cv: CV = {
     email: "javi10823@gmail.com",
     linkedin: "linkedin.com/in/javierolivieri",
     github: "github.com/javi10823",
-    availability: "Currently at PeopleScape.AI · Open to select consulting engagements",
   },
 
   summary: [
