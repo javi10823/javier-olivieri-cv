@@ -255,7 +255,6 @@ export const cv: CV = {
       emoji: "🪨",
       label: "Agentic AI · Computer Vision · Automation",
       title: "D'Angelo Marmolería — AI Quoting Agent",
-      badge: "Soon",
       description:
         "Conversational AI agent that reads architectural floor plans, applies 30+ business rules, validates material stock, and auto-generates PDF + Excel quotes. Built with Claude API, Next.js, streaming, and Google Sheets lead capture. Replaced a fully manual 3hr process.",
       metrics: [
@@ -272,8 +271,8 @@ export const cv: CV = {
         { label: "PDF Gen" },
       ],
       links: {
-        soon: true,
-        github: "https://github.com/javi10823",
+        live: { url: "https://ia-agent-quote-marble-operator.vercel.app/", label: "View Live" },
+        github: "https://github.com/javi10823/ia-agent-quote-marble-operator",
       },
       featured: true,
     },
