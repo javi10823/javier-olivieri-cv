@@ -251,6 +251,33 @@ export const cv: CV = {
 
   portfolio: [
     {
+      thumbVariant: 1,
+      emoji: "🪨",
+      label: "Agentic AI · Computer Vision · Automation",
+      title: "D'Angelo Marmolería — AI Quoting Agent",
+      badge: "Soon",
+      description:
+        "Conversational AI agent that reads architectural floor plans, applies 30+ business rules, validates material stock, and auto-generates PDF + Excel quotes. Built with Claude API, Next.js, streaming, and Google Sheets lead capture. Replaced a fully manual 3hr process.",
+      metrics: [
+        { value: "3hrs→min", key: "Quote time" },
+        { value: "70%", key: "Leads recovered" },
+        { value: "30+", key: "Business rules" },
+      ],
+      tags: [
+        { label: "Claude API", teal: true },
+        { label: "Agentic", teal: true },
+        { label: "Next.js" },
+        { label: "TypeScript" },
+        { label: "Google Sheets" },
+        { label: "PDF Gen" },
+      ],
+      links: {
+        soon: true,
+        github: "https://github.com/javi10823",
+      },
+      featured: true,
+    },
+    {
       thumbVariant: 7,
       emoji: "💬",
       label: "Conversational AI · Lead Conversion · Streaming",
@@ -301,33 +328,6 @@ export const cv: CV = {
       links: {
         live: { url: "https://boldcoffee-dashboard.netlify.app/", label: "Coming Soon" },
         github: "https://github.com/javi10823/bold-marketing-ia-poc",
-      },
-      featured: true,
-    },
-    {
-      thumbVariant: 1,
-      emoji: "🪨",
-      label: "Agentic AI · Computer Vision · Automation",
-      title: "D'Angelo Marmolería — AI Quoting Agent",
-      badge: "Soon",
-      description:
-        "Conversational AI agent that reads architectural floor plans, applies 30+ business rules, validates material stock, and auto-generates PDF + Excel quotes. Built with Claude API, Next.js, streaming, and Google Sheets lead capture. Replaced a fully manual 3hr process.",
-      metrics: [
-        { value: "3hrs→min", key: "Quote time" },
-        { value: "70%", key: "Leads recovered" },
-        { value: "30+", key: "Business rules" },
-      ],
-      tags: [
-        { label: "Claude API", teal: true },
-        { label: "Agentic", teal: true },
-        { label: "Next.js" },
-        { label: "TypeScript" },
-        { label: "Google Sheets" },
-        { label: "PDF Gen" },
-      ],
-      links: {
-        soon: true,
-        github: "https://github.com/javi10823",
       },
       featured: true,
     },
