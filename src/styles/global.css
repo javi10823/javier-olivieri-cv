@@ -166,7 +166,8 @@ nav.site-nav {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: 60px;
+  padding-top: 128px;
+  padding-bottom: 48px;
   position: relative;
   overflow: hidden;
 }
