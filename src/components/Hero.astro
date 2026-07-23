@@ -68,15 +68,17 @@ function renderInline(s: string): string {
             </div>
             {header.github}
           </a>
-          <a
-            href={`https://${header.website}`}
-            target="_blank"
-            rel="noopener"
-            class="hero-contact-item"
-          >
-            <div class="icon">⊕</div>
-            {header.website}
-          </a>
+          {header.website && (
+            <a
+              href={`https://${header.website}`}
+              target="_blank"
+              rel="noopener"
+              class="hero-contact-item"
+            >
+              <div class="icon">⊕</div>
+              {header.website}
+            </a>
+          )}
           <div class="hero-contact-item static">
             <div class="icon">📍</div>
             {header.location}

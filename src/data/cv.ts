@@ -6,7 +6,7 @@ export type ContactInfo = {
   email: string;
   linkedin: string;
   github: string;
-  website: string;
+  website?: string;
   availability: string;
 };
 
@@ -87,14 +87,13 @@ export type CV = {
 export const cv: CV = {
   header: {
     name: "Javier Olivieri",
-    headline: "Independent AI Engineer · Agentic Systems Architect",
+    headline: "Agentic AI Architect · Building AI-native systems for founders",
     location: "Rosario, Argentina",
     phone: "+54 9 341 377 7677",
     email: "javi10823@gmail.com",
     linkedin: "linkedin.com/in/javierolivieri",
     github: "github.com/javi10823",
-    website: "devlabs.dev",
-    availability: "Available for remote · USA / Europe · South America",
+    availability: "Currently at PeopleScape.AI · Open to select consulting engagements",
   },
 
   summary: [
@@ -519,6 +518,29 @@ export const cv: CV = {
   ],
 
   experience: [
+    {
+      company: "PeopleScape.AI",
+      location: "New York, United States",
+      period: "Jul 2026 — Present",
+      role: "Agentic AI Engineer",
+      contractType: "FULL-TIME · HYBRID",
+      summary:
+        "Design and build agentic AI workflows for HR analytics and workforce intelligence products.",
+      bullets: [
+        "Design and ship production AI features using multi-agent orchestration, structured outputs, tool use, and retrieval-based approaches.",
+        "Contribute to evaluation infrastructure for agentic pipelines — reliability, calibration, and safety.",
+        "Work across the full AI-engineering stack: prompt design, agent architecture, backend integration, and production monitoring.",
+      ],
+      tags: [
+        { label: "Multi-agent Systems", teal: true },
+        { label: "Claude API", teal: true },
+        { label: "LangGraph" },
+        { label: "Structured Outputs" },
+        { label: "Tool Use" },
+        { label: "RAG" },
+        { label: "HR Tech" },
+      ],
+    },
     {
       company: "DevLabs",
       location: "Rosario, Argentina",

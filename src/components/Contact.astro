@@ -85,12 +85,14 @@ const { header } = cv;
           </svg>
           GitHub
         </a>
-        <a
-          href={`https://${header.website}`}
-          target="_blank"
-          rel="noopener"
-          class="contact-link">⊕ {header.website}</a
-        >
+        {header.website && (
+          <a
+            href={`https://${header.website}`}
+            target="_blank"
+            rel="noopener"
+            class="contact-link">⊕ {header.website}</a
+          >
+        )}
       </div>
     </div>
   </div>
